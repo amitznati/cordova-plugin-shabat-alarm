@@ -1,0 +1,25 @@
+{
+  "name": "com.az.cordova.plugin.shabatalarm",
+  "version": "1.0.0",
+  "description": "Cordova plugin for shabat alarm",
+  "cordova": {
+    "id": "com.az.cordova.plugin.shabatalarm",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitznati/cordova-plugin-shabat-alarm.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Amit Znati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amitznati/cordova-plugin-shabat-alarm/issues"
+  },
+  "homepage": "https://github.com/amitznati/cordova-plugin-shabat-alarm#readme"
+}

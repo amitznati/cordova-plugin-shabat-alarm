@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="com.az.cordova.plugin.shabatalarm" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-shabat-alarm</name>
+    <js-module name="cordova-plugin-shabat-alarm" src="www/cordova-plugin-shabat-alarm.js">
+        <clobbers target="cordova.plugins.cordova-plugin-shabat-alarm" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="cordova-plugin-shabat-alarm">
+                <param name="android-package" value="com.az.cordova.plugin.shabatalarm.cordova-plugin-shabat-alarm" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            
+        </config-file>
+        <source-file src="src/android/cordova-plugin-shabat-alarm.java" target-dir="src/com/az/cordova/plugin/shabatalarm/cordova-plugin-shabat-alarm" />
+    </platform>
+</plugin>
