@@ -1,9 +1,9 @@
 {
-  "name": "com.az.cordova.plugin.shabatalarm",
+  "name": "com.az.cordova.plugin.shabatalarms",
   "version": "1.0.0",
-  "description": "Cordova plugin for shabat alarm",
+  "description": "",
   "cordova": {
-    "id": "com.az.cordova.plugin.shabatalarm",
+    "id": "com.az.cordova.plugin.shabatalarms",
     "platforms": [
       "android"
     ]
