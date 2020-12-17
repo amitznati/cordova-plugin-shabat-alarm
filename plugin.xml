@@ -15,7 +15,7 @@
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml">
-
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
         </config-file>
         <source-file src="src/android/ShabatAlarms.java" target-dir="src/com/az/cordova/plugin/shabatalarms/ShabatAlarms" />
     </platform>
