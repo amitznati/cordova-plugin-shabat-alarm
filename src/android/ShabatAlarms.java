@@ -63,7 +63,7 @@ public class ShabatAlarms extends CordovaPlugin {
             Calendar alarmTime = ShabatAlarms.getOneTimeAlarmDate(time);
             Intent intent = new Intent(context, ShabatAlarms.class);
             ShabatAlarms.setNotification(context, alarmTime, intent, ID_ONETIME_OFFSET);
-            callbackContext.success(true);
+            callbackContext.success("success");
         }
         callbackContext.error("Expected time argument.");
     }
