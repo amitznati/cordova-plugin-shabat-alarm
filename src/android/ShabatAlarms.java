@@ -56,6 +56,7 @@ public class ShabatAlarms extends CordovaPlugin {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void setAlarm(JSONObject options, CallbackContext callbackContext) throws JSONException {
         if (options != null && options.has("time")) {
             Context context = cordova.getActivity().getApplicationContext();
@@ -63,7 +64,8 @@ public class ShabatAlarms extends CordovaPlugin {
             Calendar alarmTime = ShabatAlarms.getOneTimeAlarmDate(time);
             Intent intent = new Intent(context, ShabatAlarms.class);
             ShabatAlarms.setNotification(context, alarmTime, intent, ID_ONETIME_OFFSET);
-            callbackContext.success("success");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            callbackContext.success("setting alarm at " + sdf.format(alarmTime.getTime()));
         }
         callbackContext.error("Expected time argument.");
     }
