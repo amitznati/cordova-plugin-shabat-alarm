@@ -2,8 +2,12 @@
 <plugin id="com.az.cordova.plugin.shabatalarms" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>ShabatAlarms</name>
     <js-module name="ShabatAlarms" src="www/ShabatAlarms.js">
-        <clobbers target="cordova.plugins.shabatalarms.ShabatAlarms" />
+        <clobbers target="ShabatAlarms" />
     </js-module>
+    <engines>
+        <engine name="cordova" version=">=6.0.0"/>
+    </engines>
+    <asset src="www/ShabatAlarms.js" target="js/ShabatAlarms.js"/>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="ShabatAlarms">
