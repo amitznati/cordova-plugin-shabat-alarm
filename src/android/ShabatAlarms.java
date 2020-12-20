@@ -62,8 +62,15 @@ public class ShabatAlarms extends CordovaPlugin {
             Context context = cordova.getActivity().getApplicationContext();
             JSONObject time = options.getJSONObject("time");
             Calendar alarmTime = ShabatAlarms.getOneTimeAlarmDate(time);
-            Intent intent = new Intent(context, ShabatAlarms.class);
-            ShabatAlarms.setNotification(context, alarmTime, intent, ID_ONETIME_OFFSET);
+
+            alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(context, WakeupReceiver.class);
+            alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+            alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() +
+                    60 * 1000, alarmIntent);
+//             ShabatAlarms.setNotification(context, alarmTime, intent, ID_ONETIME_OFFSET);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             callbackContext.success("setting alarm at " + sdf.format(alarmTime.getTime()));
         }
@@ -102,7 +109,7 @@ public class ShabatAlarms extends CordovaPlugin {
             SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Log.d(LOG_TAG,"setting alarm at " + sdf.format(alarmDate.getTime()) + "; id " + id);
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
             PendingIntent sender = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             if (alarmManager != null) {

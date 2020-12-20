@@ -1,9 +1,9 @@
 {
-  "name": "com.az.cordova.plugin.shabatalarms",
+  "name": "WakeupPlugin",
   "version": "1.0.0",
   "description": "",
   "cordova": {
-    "id": "com.az.cordova.plugin.shabatalarms",
+    "id": "com.az.cordova.plugin.wakeupplugin",
     "platforms": [
       "android"
     ]
