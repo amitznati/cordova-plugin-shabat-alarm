@@ -71,7 +71,7 @@ public class WakeupPlugin extends CordovaPlugin {
 				if (options != null && options.has("time")) {
                     JSONObject time = options.getJSONObject("time");
                     Integer key = 0;
-                    if (options.has("key") {
+                    if (options.has("key")) {
                         key = options.getInt("key");
                     }
                     Calendar alarmTime = WakeupPlugin.getOneTimeAlarmDate(time);
@@ -104,7 +104,7 @@ public class WakeupPlugin extends CordovaPlugin {
 			}else if(action.equalsIgnoreCase("cancelAlarm")) {
 				Log.d(LOG_TAG, "canceling alarms");
 				Integer key = 0;
-                if (options.has("key") {
+                if (options.has("key")) {
                     key = options.getInt("key");
                 }
                 Intent intent = new Intent(context, WakeupReceiver.class);

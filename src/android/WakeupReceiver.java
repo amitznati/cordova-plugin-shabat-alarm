@@ -51,7 +51,7 @@ public class WakeupReceiver extends BroadcastReceiver {
                             }
                         },
                         seconds * 1000);
-                Toast.makeText(context, "Alarm....", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "שבת שלום", Toast.LENGTH_LONG).show();
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
