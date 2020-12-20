@@ -65,10 +65,10 @@ public class WakeupPlugin extends CordovaPlugin {
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		boolean ret=true;
 		JSONObject options=args.getJSONObject(0);
+		Context context = cordova.getActivity().getApplicationContext();
 		try {
 			if(action.equalsIgnoreCase("setAlarm")) {
 				if (options != null && options.has("time")) {
-                    Context context = cordova.getActivity().getApplicationContext();
                     JSONObject time = options.getJSONObject("time");
                     Calendar alarmTime = WakeupPlugin.getOneTimeAlarmDate(time);
 
@@ -77,7 +77,7 @@ public class WakeupPlugin extends CordovaPlugin {
 					if(options.has("seconds")) {
 						intent.putExtra("seconds", options.getInt("seconds"));
 					}
-                    PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+                    PendingIntent alarmIntent = PendingIntent.getBroadcast(context, ID_ONETIME_OFFSET, intent, 0);
                     if (alarmMgr != null) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             alarmMgr.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), alarmIntent);
@@ -97,13 +97,16 @@ public class WakeupPlugin extends CordovaPlugin {
 				PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
 				pluginResult.setKeepCallback(true);
 				callbackContext.sendPluginResult(pluginResult);
-			}else if(action.equalsIgnoreCase("snooze")) {
-				if (options.has("alarms")) {
-					Log.d(LOG_TAG, "scheduling snooze...");
-					JSONArray alarms = options.getJSONArray("alarms");
-					setAlarms(cordova.getActivity().getApplicationContext(), alarms, false);
-				}
+			}else if(action.equalsIgnoreCase("cancelAlarm")) {
+				Log.d(LOG_TAG, "canceling alarms");
+                Intent intent = new Intent(context, WakeupReceiver.class);
+                PendingIntent sender = PendingIntent.getBroadcast(context, ID_ONETIME_OFFSET, intent, 0);
+                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                Log.d(LOG_TAG, "cancelling alarm id " + 0);
+                assert alarmManager != null;
+                alarmManager.cancel(sender);
 
+                callbackContext.success("cancelling alarm id " + 0);
 				WakeupPlugin.connectionCallbackContext = callbackContext;
 				PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
 				pluginResult.setKeepCallback(true);
