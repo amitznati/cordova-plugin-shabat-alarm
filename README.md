@@ -1,6 +1,6 @@
 # cordova-plugin-shabat-alarm
 
-Cordova plugin for setting one-time alarm that will active the alarm sound for selected time in seconds.
+Cordova plugin for setting one-time alarm that will active the alarm sound for selected period of time in seconds.
 
 
 **Supported Platforms**
