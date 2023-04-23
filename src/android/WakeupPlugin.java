@@ -69,13 +69,9 @@ public class WakeupPlugin extends CordovaPlugin {
 			if (options.has("seconds")) {
 				intent.putExtra("seconds", options.getInt("seconds"));
 			}
-			PendingIntent alarmIntent = PendingIntent.getBroadcast(context, key, intent, 0);
+			PendingIntent alarmIntent = PendingIntent.getBroadcast(context, key, intent, PendingIntent.FLAG_IMMUTABLE);
 			if (alarmMgr != null) {
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-					alarmMgr.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), alarmIntent);
-				} else {
-					alarmMgr.setExact(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), alarmIntent);
-				}
+				alarmMgr.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), alarmIntent);
 			}
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			sendPluginCallback(callbackContext, key, "setting alarm at " + sdf.format(alarmTime.getTime()));
